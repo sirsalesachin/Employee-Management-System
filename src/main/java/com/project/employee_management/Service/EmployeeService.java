@@ -1,38 +1,44 @@
 package com.project.employee_management.Service;
 
+import com.project.employee_management.exception.EmployeeNotFoundException;
 import com.project.employee_management.Model.Employee;
 import com.project.employee_management.Repository.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@Component
 @Service
 public class EmployeeService {
+
     @Autowired
-    private EmployeeRepo EmpRepo;
+    private EmployeeRepo empRepo;
 
-    public List<Employee> GetAll(){
-        return EmpRepo.findAll();
+    public List<Employee> GetAll() {
+        return empRepo.findAll();
     }
 
-    public Employee CreateEmp(@RequestBody Employee Entry){
-        return EmpRepo.save(Entry);
+    public Employee CreateEmp(Employee entry) {
+        return empRepo.save(entry);
     }
 
-    public Employee GetById(@PathVariable String Empid){
-        return EmpRepo.findById(Empid).orElse(null);
+    public Employee GetById(String empid) {
+        return empRepo.findById(empid).orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + empid));
     }
 
-    public Employee updateEmployee(Employee newEntry) {
-        return EmpRepo.save(newEntry);
+    public Employee update(String empid, Employee newEntry) {
+
+        Employee existing = GetById(empid);
+        existing.setName(newEntry.getName());
+        existing.setEmail(newEntry.getEmail());
+        existing.setDepartment(newEntry.getDepartment());
+        existing.setSalary(newEntry.getSalary());
+
+        return empRepo.save(existing);
     }
 
-    public void DeleteById(@PathVariable String Empid){
-        EmpRepo.deleteById(Empid);
+    public void DeleteById(String empid) {
+        Employee existing = GetById(empid);
+        empRepo.delete(existing);
     }
 }

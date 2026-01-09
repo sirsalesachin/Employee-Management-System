@@ -2,7 +2,10 @@ package com.project.employee_management.Contoller;
 
 import com.project.employee_management.Model.Employee;
 import com.project.employee_management.Service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,30 +17,35 @@ public class EmployeeController {
     @Autowired
     private EmployeeService EmpService;
 
-    @GetMapping
-    public List<Employee> getAllEmp(){
-        return EmpService.GetAll();
+    @PostMapping
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee Entry) {
+        Employee savedEmployee = EmpService.CreateEmp(Entry);
+        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public void createEmpEntry(@RequestBody Employee Entry){
-        EmpService.CreateEmp(Entry);
+    @GetMapping
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = EmpService.GetAll();
+        return ResponseEntity.ok(employees);
     }
 
     @GetMapping("/{empid}")
-    public Employee getbyid(@PathVariable String empid){
-        return EmpService.GetById(empid);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable String empid) {
+        Employee employee = EmpService.GetById(empid);
+        return ResponseEntity.ok(employee);
     }
 
+
     @PutMapping("/{empid}")
-    public Employee updateEmployee(@PathVariable String empid, @RequestBody Employee newEntry) {
-        newEntry.setId(empid);
-        return EmpService.updateEmployee(newEntry);
+    public ResponseEntity<Employee> updateEmployee(@PathVariable String empid, @Valid @RequestBody Employee newEntry) {
+        Employee updatedEmployee = EmpService.update(empid, newEntry);
+        return ResponseEntity.ok(updatedEmployee);
     }
 
     @DeleteMapping("/{empid}")
-    public Boolean Deletebyid(@PathVariable String empid){
+    public ResponseEntity<String> deleteEmployee(@PathVariable String empid) {
         EmpService.DeleteById(empid);
-        return true;
+        return ResponseEntity.ok("Employee deleted successfully");
     }
+
 }

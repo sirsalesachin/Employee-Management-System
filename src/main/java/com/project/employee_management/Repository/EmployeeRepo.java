@@ -7,9 +7,4 @@ import java.util.List;
 
 public interface EmployeeRepo extends MongoRepository<Employee, String> {
 
-
-    List<Employee> findByNameContainingIgnoreCase(String name);
-
-    List<Employee> findByDepartment(String department);
-
 }
