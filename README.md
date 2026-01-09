@@ -1,6 +1,6 @@
 # Employee Management System
 
-## 📌 Project Overview
+## Project Overview
 Employee Management System is a backend application developed using **Java, Spring Boot, and MongoDB**.  
 It provides a RESTful API for managing employee records with **full CRUD operations** (Create, Read, Update, Delete).
 
@@ -11,7 +11,7 @@ The project implements:
 
 ---
 
-## 💻 Features
+## Features
 - Add new employees
 - View all employees
 - View employee by ID
@@ -23,7 +23,7 @@ The project implements:
 
 ---
 
-## 🛠 Technology Stack
+## Technology Stack
 - **Language:** Java
 - **Framework:** Spring Boot
 - **Database:** MongoDB
@@ -34,4 +34,4 @@ The project implements:
 
 ---
 
-## 📦 Project Structure
+## Project Structure
