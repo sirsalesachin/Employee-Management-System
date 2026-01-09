@@ -20,8 +20,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmpEntry(@RequestBody Employee Entry){
-        return EmpService.CreateEmp(Entry);
+    public void createEmpEntry(@RequestBody Employee Entry){
+        EmpService.CreateEmp(Entry);
     }
 
     @GetMapping("/{empid}")
