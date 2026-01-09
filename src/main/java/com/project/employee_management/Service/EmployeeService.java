@@ -21,8 +21,8 @@ public class EmployeeService {
         return EmpRepo.findAll();
     }
 
-    public void CreateEmp(@RequestBody Employee Entry){
-        EmpRepo.save(Entry);
+    public Employee CreateEmp(@RequestBody Employee Entry){
+        return EmpRepo.save(Entry);
     }
 
     public Employee GetById(@PathVariable String Empid){
