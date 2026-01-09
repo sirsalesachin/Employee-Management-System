@@ -2,6 +2,7 @@ package com.project.employee_management.Service;
 
 import com.project.employee_management.Model.Employee;
 import com.project.employee_management.Repository.EmployeeRepo;
+import com.project.employee_management.exception.EmployeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class EmployeeService {
     }
 
     public Employee GetById(@PathVariable String Empid){
-        return EmpRepo.findById(Empid).orElse(null);
+        return EmpRepo.findById(Empid).orElseThrow(() -> new EmployeNotFoundException("Employee not found with id: " + Empid));
     }
 
     public Employee updateEmployee(Employee newEntry) {
