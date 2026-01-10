@@ -35,20 +35,4 @@ public class Employee {
     private String department;
 
 
-
-//    @Id
-//    private String id;
-//
-//    @NotBlank(message = "Name is mandatory")
-//    private String name;
-//
-//    @Email(message = "Email should be valid")
-//    private String email;
-//
-//    @NotBlank(message = "Department is mandatory")
-//    private String department;
-//
-//    @Min(value = 0, message = "Salary must be non-negative")
-//    private double salary;
-
 }

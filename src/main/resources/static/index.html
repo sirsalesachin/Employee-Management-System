@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+</head>
+<body>
+
+<h2>Employee Management System</h2>
+
+<form id="empForm">
+    <input type="hidden" id="id">
+
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="number" id="salary" placeholder="Salary" required>
+    <input type="text" id="department" placeholder="Department" required>
+
+    <button type="submit">Save Employee</button>
+</form>
+
+<hr>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>Department</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="empTable"></tbody>
+</table>
+
+<script src="app.js"></script>
+</body>
+</html>

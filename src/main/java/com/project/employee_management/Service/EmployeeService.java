@@ -33,7 +33,6 @@ public class EmployeeService {
         existing.setEmail(newEntry.getEmail());
         existing.setDepartment(newEntry.getDepartment());
         existing.setSalary(newEntry.getSalary());
-
         return empRepo.save(existing);
     }
 
